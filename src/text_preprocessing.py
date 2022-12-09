@@ -88,10 +88,8 @@ class TextPreprocessing:
         if use_nltk:
             # baixa as stopwords
             nltk.download('stopwords')
-
             # para escolher as stopwords do português adicionamos a opçaõ de língua "portuguese"
             stopwords_list = stopwords.words(language)
-            print(stopwords)
         
         if custom_stopwords:
             stopwords_list = stopwords_list + custom_stopwords
