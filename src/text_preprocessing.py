@@ -17,8 +17,7 @@ class TextPreprocessing:
         self.df[new_column_name] = self.df[column_name]
         # self.custom_stopwords = ['produto', 'pra']
     
-    # pode ser que valha a pena manter as pontuações
-    # outra opção seria usar o word_tokenizer
+    # fazer implementação usando word_tokenizer ou str.split()
     def tokenize(self):
         self.df[self.new_column_name] = self.df[self.new_column_name].apply(
             self.apply_tokenizer) 
@@ -41,6 +40,7 @@ class TextPreprocessing:
         stemming_tokenized_text = [self.snowball.stem(y) for y in tokenized_text]
         return stemming_tokenized_text
 
+    # pontuação é também removida no tokenize
     def remove_punctuation(self):
         self.df[self.new_column_name] = self.df[self.new_column_name].str.replace(
             pat='[^\w\s]', repl='', regex=True)
@@ -64,13 +64,11 @@ class TextPreprocessing:
 
 
     @staticmethod
+    # seleciona apenas letras e coloca
+    #  todas em minúsculo (remove pontuações)
+    # retorna a sentença como uma lista
     def apply_tokenizer(text):
-        # seleciona apenas letras e coloca todas em minúsculo
-        # retorna a sentença como uma lista
-        # if type(text)==str:
         letras_min =  re.findall(r'\b[A-zÀ-úü]+\b', text.lower())
-        # else:
-        #     letras_min = np.nan
         return letras_min
 
 
