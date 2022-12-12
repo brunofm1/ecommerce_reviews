@@ -130,4 +130,5 @@ dmypy.json
 
 # others
 .DS_Store
-outros/
+Datasets_ignore/
+Artigos/
