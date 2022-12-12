@@ -6,8 +6,11 @@ from nltk.stem.wordnet import WordNetLemmatizer
 from typing import List
 import re
 
-
 class TextPreprocessing:
+    """ Classe com funções de pré processamento em strings.
+    Aplica funções na coluna especificada do dataframe. """
+    
+
     def __init__(self, df, column_name, new_column_name='text_preprocessed',
      language='portuguese') -> None:
         self.df = df
@@ -15,14 +18,32 @@ class TextPreprocessing:
         self.new_column_name = new_column_name
         self.language = language
         self.df[new_column_name] = self.df[column_name]
-        # self.custom_stopwords = ['produto', 'pra']
+        # Lista de stopwords adicionas por padrão
+        #  self.custom_stopwords = ['produto', 'pra']
+
+    def pre_process(self, stemming=True):
+        """ Método principal que realiza as etapas de remoção de
+        pontuação, acentuação, tokenização e remoção de stopwords.
+        Opcionalmente faz a operação de stemmização.
+        """
+        
+        self.remove_punctuation()
+        self.remove_accents()
+        self.tokenize()
+        self.remove_stopwords()
+        if stemming:
+            self.stemming()
+        
+        self.df['clean_text'] = self.df[self.new_column_name].apply(
+            lambda x: ' '.join(x))
+        return self.df
     
     # fazer implementação usando word_tokenizer ou str.split()
     def tokenize(self):
         self.df[self.new_column_name] = self.df[self.new_column_name].apply(
             self.apply_tokenizer) 
 
-    # criar parâmetro para remover stopwords
+    
     def remove_stopwords(self, use_nltk=True, language='portuguese', 
     custom_stopwords=['produto', 'pra']):        
         stopwords = self.load_stopwords(use_nltk, language, custom_stopwords)
@@ -31,7 +52,6 @@ class TextPreprocessing:
 
     def stemming(self):
         self.snowball = SnowballStemmer(language=self.language)
-
         self.df[self.new_column_name] = self.df[self.new_column_name].map(
             lambda x: [self.snowball.stem(y) for y in x]
             )
@@ -50,18 +70,6 @@ class TextPreprocessing:
             'NFKD').str.encode(
             'ascii', errors='ignore').str.decode('utf-8')
     
-    def pre_process(self, stemming=True):
-        self.remove_punctuation()
-        self.remove_accents()
-        self.tokenize()
-        self.remove_stopwords()
-        if stemming:
-            self.stemming()
-        #  ajeitar isso aqui
-        self.df['clean_text'] = self.df[self.new_column_name].apply(
-            lambda x: ' '.join(x))
-        return self.df
-
 
     @staticmethod
     # seleciona apenas letras e coloca
