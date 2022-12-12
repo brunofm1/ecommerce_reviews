@@ -9,9 +9,9 @@ Este projeto tem como objetivo a implementação de técnicas de NLP em um conte
 O objetivo inicial do projeto foi a construção de um frame work para leitura e pré processamento dos datasets, assim como implementação de técnicas de representação de texto (Bag of Words e TDF). Além disso, foram implementadas técnicas não supervisionadas de clusterização e topificação para análise de dados e criado um modelo de classificação dos modelos com base em regex. 
 
 
-main.py
+# main.py
 
-Para a partir da raiz do projeto digitar o comando: 
+Para rodar a partir da raiz do projeto basta digitar o comando dentro do ambiente virtual a ser gerado baixando os pacotes especificados dentro do arquivo requeriments.txt: 
 
 python main.py
 
