@@ -13,7 +13,9 @@ O objetivo inicial do projeto foi a construção de um frame work para leitura e
 
 Para rodar a partir da raiz do projeto basta digitar o comando dentro do ambiente virtual a ser gerado baixando os pacotes especificados dentro do arquivo requeriments.txt: 
 
+```
 python main.py
+```
 
 O dataset B2W será então carregado e processado, assim como as etapas de pré processamento de texto. Também será rodado o modelo de classificação das reviews a partir de um modelo baseline que faz topificação dos comentário com base em regex (). Em seguida, será o texto dos comentários será representado usando a técnica de Tdf () e será aplicada uma redução de dimensionalidade UMAP. Finalmenete, será gerada uma imagem da representação bidimensional da representação transformada.
 
@@ -24,4 +26,8 @@ No entanto, há de se fazer uma série de ressalvas importantes. Em primeiro lug
 
 ## Testes unitários
 
+
+
+```
 python -m pytest -vv src/tests/test_text_pre_processing.py
+```
