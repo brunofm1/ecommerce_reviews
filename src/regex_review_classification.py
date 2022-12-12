@@ -2,9 +2,8 @@ from config import __resources_dir__
 import os
 import numpy as np
 from nltk.stem.snowball import SnowballStemmer
-# import glob
 
-# busca uma se a coluna alguma dentre uma lista de palavras
+# busca se a coluna possui alguma sting dentre uma lista de palavras
 def column_regex(df, col_name, words, new_col_name):
     df[new_col_name] = False
     for word in words:
@@ -26,7 +25,8 @@ def list_stemming(words):
     stemm_words = set([snowball.stem(y) for y in words])
     return stemm_words
 
-
+# Faz a topificação da coluna recebida para cada uma das classes no diretório recebido
+# Em seguida calcula a classe de cada comentário com base nos tópicos presentes no mesmo
 def regex_classification(df, dir=__resources_dir__, stemming=True, df_col='clean_text'):
     files = os.listdir(dir)
     col_name_value = {}
@@ -44,6 +44,8 @@ def regex_classification(df, dir=__resources_dir__, stemming=True, df_col='clean
 
     return df
 
+# Atribui uma classe para cada comentário
+# A classe será a soma dos tópicos identificados
 def aggregate_classes(df, columns_names_values:dict):
     df['review_class'] = ''
 
