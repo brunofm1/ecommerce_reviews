@@ -1,5 +1,5 @@
 # testar classe que faz pré-processamento de texto
-from src.text_preprocessing import TextPreprocessing
+from text_preprocessing.text_preprocessing import TextPreprocessing
 import pandas as pd
 import pytest
 

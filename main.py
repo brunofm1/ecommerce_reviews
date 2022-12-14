@@ -2,9 +2,9 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 import umap
 import matplotlib.pyplot as plt
 import seaborn as sns
-from src.regex_review_classification import regex_classification
+from models.regex_review_classification import regex_classification
 from src.Dataloaders.b2w_dataset import B2W
-from src.text_preprocessing import TextPreprocessing
+from text_preprocessing.text_preprocessing import TextPreprocessing
 from config import __file_dir__
 
 

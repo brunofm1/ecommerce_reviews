@@ -1,3 +1,5 @@
+# Módulo com implementação de classe para viabilizar técnicas diversas 
+# de embedding de texto
 # implementar bag of words
 # implementar TF-IDF
 # implementar Word2Vec
