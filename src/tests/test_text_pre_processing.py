@@ -3,10 +3,8 @@ from text_preprocessing.text_preprocessing import TextPreprocessing
 import pandas as pd
 import pytest
 
-# testar funções
+
 class TestTextPreProcess():
-    # def __init__(self):
-    #     pass
     
     def test_tokenize(self):
         input = ['Texto separado por espaços, e com pontuações !, ? soltas. ',
